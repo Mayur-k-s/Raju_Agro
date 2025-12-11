@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Product Details - Raju Agro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav id="mainNav" class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="agro2.jpg" alt="Logo" class="brand-logo">
+        <span class="brand-name">Raju Agro</span>
+      </a>
+      <a href="products.html" class="btn btn-sm btn-outline-dark"><i class="bi bi-arrow-left"></i> Back to List</a>
+    </div>
+  </nav>
+
+  <section class="container py-5 mt-5">
+    <div class="glass-panel p-4 p-md-5">
+      <div class="row g-5">
+        
+        <div class="col-md-5">
+          <div class="detail-img-box">
+            <img id="p-image" src="" alt="Product Image">
+          </div>
+          <div class="mt-4 text-center">
+             <div class="d-grid gap-2">
+                <a href="https://wa.me/918248888714?text=I want to buy this product" target="_blank" class="btn btn-success btn-lg">
+                  <i class="bi bi-whatsapp me-2"></i>Order via WhatsApp
+                </a>
+             </div>
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <h2 id="p-name" class="fw-bold display-6 mb-2"></h2>
+          <p id="p-source" class="text-muted fst-italic mb-3"></p>
+          
+          <h3 id="p-price" class="text-success fw-bold mb-4"></h3>
+
+          <div class="mb-4">
+            <h5 class="fw-bold border-bottom border-dark pb-2">Product Description</h5>
+            <p id="p-desc"></p>
+          </div>
+
+          <table class="spec-table mb-4">
+            <tbody>
+              <tr><td class="spec-label">Chemical Name</td><td id="p-chem"></td></tr>
+              <tr><td class="spec-label">Purpose</td><td id="p-purpose"></td></tr>
+              <tr><td class="spec-label">Manufacturing</td><td id="p-manuf"></td></tr>
+              <tr><td class="spec-label">Pack Size</td><td id="p-qty"></td></tr>
+            </tbody>
+          </table>
+
+          <div class="mb-4">
+            <h5 class="fw-bold"><i class="bi bi-check-circle-fill text-success me-2"></i>Key Uses</h5>
+            <ul id="p-uses" class="list-group list-group-flush bg-transparent">
+              </ul>
+          </div>
+
+          <div class="warning-box">
+            <strong><i class="bi bi-exclamation-triangle-fill me-2"></i>Warnings & Safety:</strong>
+            <p id="p-warnings" class="mb-0 mt-1"></p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="products.js"></script>
+  <script>
+    // Get ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+
+    // Find Product
+    const product = products.find(p => p.id === productId);
+
+    if (product) {
+      document.getElementById('p-image').src = product.image;
+      document.getElementById('p-name').innerText = product.name;
+      document.getElementById('p-source').innerText = "Sourced from: " + product.source;
+      document.getElementById('p-price').innerText = product.price;
+      document.getElementById('p-desc').innerText = product.shortDesc;
+      document.getElementById('p-chem').innerText = product.chemicalName;
+      document.getElementById('p-purpose').innerText = product.purpose;
+      document.getElementById('p-manuf').innerText = product.manufacturing;
+      document.getElementById('p-qty').innerText = product.quantity;
+      document.getElementById('p-warnings').innerText = product.warnings;
+
+      const usesList = document.getElementById('p-uses');
+      product.uses.forEach(use => {
+        const li = document.createElement('li');
+        li.className = "list-group-item bg-transparent border-0 ps-0";
+        li.innerHTML = `<i class="bi bi-dot fs-4 text-success"></i> ${use}`;
+        usesList.appendChild(li);
+      });
+    } else {
+      document.body.innerHTML = "<h1 class='text-center text-white mt-5'>Product Not Found</h1>";
+    }
+  </script>
+</body>
+</html>

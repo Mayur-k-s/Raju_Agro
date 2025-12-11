@@ -1,0 +1,448 @@
+/* ---- GOOGLE FONTS & ROOT VARIABLES ---- */
+:root {
+  --brand-dark: #0f3d0f;
+  --brand-green: #2e7d32;
+  --brand-yellow: #FFC107;
+  
+  /* THE GLASS RECIPE */
+  /* Much lower opacity (0.25) so you can see through it */
+  --glass-bg: rgba(255, 255, 255, 0.25); 
+  /* Strong white border to simulate glass edge */
+  --glass-border: 1px solid rgba(255, 255, 255, 0.65); 
+  /* Heavy blur for the frosted look */
+  --glass-blur: blur(16px);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+  
+  --text-dark: #1a1a1a;
+  --text-body: #333333;
+}
+
+/* ---- GENERAL STYLES ---- */
+/* ---- GENERAL STYLES ---- */
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Open Sans', "Segoe UI", Arial, sans-serif;
+  color: var(--text-dark);
+  margin: 0;
+  /* Padding for fixed navbar */
+  padding-top: 100px; 
+  
+  /* ---- UPDATED BACKGROUND ---- */
+  /* This creates the translucent effect. 
+     The rgba(255, 255, 255, 0.85) is a 85% opaque white layer on top of your logo.
+     Adjust 0.85 up (to 0.95) to make it fainter, or down (to 0.5) to make it clearer. */
+  background: linear-gradient(rgba(255, 255, 255, 0.50), rgba(255, 255, 255, 0.50)), url('agro2.png') no-repeat center center fixed;
+  
+  /* 'cover' makes sure the logo covers the whole screen, even if it cuts off edges.
+     Change to 'contain' if you want to see the whole logo tiled. */
+  background-size: cover; 
+}
+
+/* ---- PREVIOUS DARK OVERLAY REMOVED ---- */
+/* We comment this out because we want a bright, translucent background now, not a dark one. */
+/* body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.2); 
+  z-index: -1;
+} 
+*/
+
+h1, h2, h3, h4, h5, h6, .section-title {
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  color: #1a1a1a; /* Dark text for contrast */
+}
+
+/* ---- THE GLASS CLASS (Apply this to everything) ---- */
+.glass-panel, 
+.product-card, 
+.service-card, 
+.feature-box, 
+.testi, 
+#contactForm, 
+.map-container,
+.hero-content-box {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur); /* Safari support */
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 16px;
+  color: var(--text-body);
+}
+
+/* ---- HEADER & NAVBAR ---- */
+.header-container { background: transparent; }
+.pre-header {
+  background-color: var(--brand-dark); /* Keep top strip solid */
+  color: #fff;
+  padding: 8px 0;
+  font-size: 0.85rem;
+}
+.pre-header a { color: #e9ecef; text-decoration: none; }
+
+#mainNav {
+  /* Glass Navbar */
+  background: rgba(255, 255, 255, 0.4) !important; /* Slightly more opaque for nav */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  padding: 0.5rem 0;
+}
+
+.navbar-brand { display: flex; align-items: center; gap: 10px; }
+.brand-logo { width: 50px; height: auto; border-radius: 50%; border: 2px solid white; }
+.brand-name { font-weight: 700; font-size: 1.25rem; color: #000; text-transform: uppercase; }
+.tagline { font-size: 0.75rem; color: #333; font-weight: 600; }
+.nav-link { color: #000 !important; font-weight: 600; }
+
+/* ---- HERO SECTION ---- */
+.hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  /* No background here, it uses body's background */
+}
+
+.hero-content-box {
+  padding: 3rem;
+  /* Slightly whiter glass for hero text readability */
+  background: rgba(255, 255, 255, 0.45); 
+  border-top: 5px solid var(--brand-green);
+  text-align: center; /* Center align like reference */
+}
+
+/* ---- SECTIONS RESET ---- */
+section { background: transparent !important; }
+
+/* ---- CARDS & PRODUCTS ---- */
+.product-card, .service-card, .feature-box, .testi {
+  height: 100%;
+  transition: transform 0.3s ease, background 0.3s;
+  overflow: hidden;
+}
+
+/* Hover Effect: Make glass "brighter"/more opaque on hover */
+.product-card:hover, .service-card:hover, .feature-box:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.55); 
+}
+
+.product-card img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  /* Make image slightly transparent to blend, optional */
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+}
+
+.card-body, .feature-box, .service-card { padding: 1.5rem; }
+
+/* Service Card Green Accent */
+.service-card { border-left: 5px solid var(--brand-green); }
+
+/* ---- FORMS ---- */
+.form-control {
+  /* Glass inputs */
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #000;
+}
+.form-control:focus {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: none;
+  border-color: var(--brand-green);
+}
+
+/* ---- FOOTER ---- */
+footer {
+  /* Dark Glass Footer */
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(10px);
+  color: white;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+/* ---- BUTTONS ---- */
+.btn-primary {
+  background-color: var(--brand-yellow);
+  border: none;
+  color: #000;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+}
+.btn-primary:hover {
+  background-color: #ffca2c;
+  transform: scale(1.05);
+}
+
+/* ---- EXTRAS ---- */
+.whatsapp-float {
+  position: fixed;
+  width: 60px; height: 60px;
+  bottom: 25px; right: 25px;
+  background-color: #25d366;
+  color: #FFF;
+  border-radius: 50%;
+  font-size: 30px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.partner-logo {
+  height: 50px;
+  width: auto;
+  opacity: 0.9;
+  /* Add drop shadow so logos pop off the glass */
+  filter: drop-shadow(0 2px 2px rgba(255,255,255,0.8));
+  transition: all 0.3s;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-content-box { padding: 1.5rem; }
+  h1 { font-size: 2rem; }
+}
+
+
+/* ---- ADD TO BOTTOM OF STYLE.CSS ---- */
+
+/* Product Grid Styles */
+.product-grid-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+.product-grid-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.45); /* Brighter on hover */
+}
+.product-img-wrapper {
+  height: 200px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.2);
+}
+.product-img-wrapper img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+.price-tag {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--brand-dark);
+}
+
+/* Detail Page Styles */
+.detail-img-box {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--glass-border);
+}
+.detail-img-box img {
+  max-width: 100%;
+  max-height: 400px;
+  filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2));
+}
+
+.info-badge {
+  background: rgba(40, 167, 69, 0.2);
+  color: #133f13;
+  border: 1px solid var(--brand-green);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.spec-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+.spec-table td {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.3);
+  first-child: border-top-left-radius: 8px;
+  last-child: border-bottom-right-radius: 8px;
+}
+.spec-label {
+  font-weight: 700;
+  width: 30%;
+  color: var(--brand-dark);
+}
+
+.warning-box {
+  border-left: 4px solid #dc3545;
+  background: rgba(220, 53, 69, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+/* ---- ADD THIS TO THE BOTTOM OF STYLE.CSS ---- */
+
+.hero-logo {
+  width: 120px;       /* Sets a nice size */
+  height: 120px;
+  object-fit: cover;  /* Ensures circle stays round */
+  border-radius: 50%; /* Makes it circular */
+  border: 4px solid rgba(255, 255, 255, 0.8); /* Thick glass border */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  display: block;
+  margin: 0 auto 1.5rem auto; /* Centers it and adds space below */
+}
+
+
+/* ---- ADD TO BOTTOM OF STYLE.CSS ---- */
+
+/* Story Card Interactive Hover Effect */
+.story-card {
+  transition: transform 0.4s ease, background 0.4s ease;
+  cursor: default;
+}
+
+.story-card:hover {
+  transform: translateY(-8px); /* Lifts the card up */
+  background: rgba(255, 255, 255, 0.65); /* Makes it brighter/clearer */
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* Green Circle Icons */
+.icon-circle {
+  width: 60px;
+  height: 60px;
+  background-color: var(--brand-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+}
+
+/* ---- ADD TO BOTTOM OF STYLE.CSS ---- */
+
+/* EXPANDING ACCORDION STYLES */
+.values-accordion {
+  height: 500px; /* Fixed height for the interaction */
+  width: 100%;
+}
+
+.value-panel {
+  /* Default State: All panels share equal width */
+  flex: 1; 
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  transition: flex 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth springy animation */
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Push text to bottom */
+}
+
+/* Dark Overlay to make text readable over images */
+.panel-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to top, rgba(15, 61, 15, 0.95), rgba(15, 61, 15, 0.4));
+  transition: background 0.4s;
+}
+
+/* Hide the long text by default */
+.panel-text {
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+/* ---- HOVER STATES ---- */
+
+/* When hovering over the container, any panel NOT hovered gets smaller */
+.values-accordion:hover .value-panel {
+  flex: 1; /* Shrink others */
+}
+
+/* The specific panel being hovered gets WIDER */
+.value-panel:hover {
+  flex: 3; /* Grow 3x larger than the others */
+}
+
+.value-panel:hover .panel-overlay {
+  background: linear-gradient(to top, rgba(15, 61, 15, 1), rgba(15, 61, 15, 0.2));
+}
+
+/* Reveal the text on hover */
+.value-panel:hover .panel-text {
+  opacity: 1;
+  max-height: 200px; /* Reveal text */
+  transform: translateY(0);
+  margin-top: 15px;
+}
+
+/* Mobile Adjustment: On phones, stack them vertically instead */
+@media (max-width: 992px) {
+  .values-accordion {
+    height: auto;
+  }
+  .value-panel {
+    height: 300px; /* Fixed height on mobile */
+    flex: none; /* Disable flex growing on mobile */
+  }
+  .panel-text {
+    opacity: 1; /* Always show text on mobile */
+    max-height: auto;
+    transform: none;
+  }
+}
+
+/* ---- ADD TO BOTTOM OF STYLE.CSS ---- */
+
+/* Fix Contact Form Alignment */
+#contactForm {
+  text-align: left !important; /* Forces all content inside form to start from left */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.5rem; /* Adds nice breathing room inside the glass box */
+}
+
+/* Style the Labels (Name, Phone, etc.) */
+#contactForm .form-label {
+  display: block; /* Ensures label takes its own line */
+  text-align: left;
+  margin-bottom: 8px; /* Space between label and input box */
+  font-weight: 700;   /* Bold text */
+  color: var(--brand-dark); /* Uses your deep green brand color */
+  font-family: 'Merriweather', serif; /* Matches your headings */
+  letter-spacing: 0.5px;
+}
+
+/* Style the Input Boxes */
+#contactForm .form-control {
+  width: 100%;
+  border-radius: 8px; /* Softer corners */
+  padding: 12px 15px; /* Comfortable typing space */
+  margin-bottom: 5px; /* Space before next element */
+}
